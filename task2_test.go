@@ -10,8 +10,13 @@ func TestSubtraction(t *testing.T) {
 
 	target := DoubleSet{1: 1, 4: 1}
 
-	for tk, tv := range target {
-		if v, ok := result[tk]; !ok {
+	isEqual(target, result, t)
+}
+
+func isEqual(ds1 DoubleSet, ds2 DoubleSet, t *testing.T) {
+
+	for tk, tv := range ds1 {
+		if v, ok := ds2[tk]; !ok {
 			t.Fatalf("%v is a missing key", tk)
 		} else {
 			if v != tv {
@@ -19,7 +24,7 @@ func TestSubtraction(t *testing.T) {
 			}
 		}
 	}
-	if len(result) != len(target) {
+	if len(ds2) != len(ds1) {
 		t.Fatalf("result has a different length than the target")
 	}
 }
@@ -32,16 +37,5 @@ func TestAdd(t *testing.T) {
 
 	target := DoubleSet{1: 2, 2: 2, -3: 1}
 
-	for tk, tv := range target {
-		if v, ok := result[tk]; !ok {
-			t.Fatalf("%v is a missing key", tk)
-		} else {
-			if v != tv {
-				t.Fatalf("1 has value %v when it should be %v", v, tv)
-			}
-		}
-	}
-	if len(result) != len(target) {
-		t.Fatalf("result has a different length than the target")
-	}
+	isEqual(target, result, t)
 }
