@@ -39,3 +39,19 @@ func TestAdd(t *testing.T) {
 
 	isEqual(target, result, t)
 }
+
+func TestAddEmpty(t *testing.T) {
+	doubleSetOne := DoubleSet{}
+	doubleSetTwo := DoubleSet{1: 1, 2: 1, -3: 1}
+
+	result := doubleSetOne.Add(doubleSetTwo)
+	target := DoubleSet{1: 1, 2: 1, -3: 1}
+	isEqual(target, result, t)
+
+	doubleSetOne = DoubleSet{}
+	doubleSetTwo = DoubleSet{}
+
+	result = doubleSetOne.Add(doubleSetTwo)
+	target = DoubleSet{}
+	isEqual(target, result, t)
+}
